@@ -11,7 +11,7 @@ ReactDOM.render(
   <BrowserRouter>
       <Routes>
     <Route path="/" element={<App />} />
-    <Route path="restaurant" element={<RestaurantMenu />} />
+    <Route path="/restaurant/:id" element={<RestaurantMenu/>}/>
     </Routes>
   </BrowserRouter>,
   rootElement

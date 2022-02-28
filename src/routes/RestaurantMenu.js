@@ -1,28 +1,28 @@
-import React, {Component} from "react"
+import React, { useState } from "react"
 import '../css/Menu.css';
+import { useHistory, useParams } from 'react-router-dom'
 
 
 
-class RestaurantMenu extends Component{
-    state={
-      menuItems:[],
-      greeting:"hello"
-    }
+function RestaurantMenu(props){
+   
+  const [count, greeting] = useState("Hello");
+  let { id } = useParams();
 
-    async componentDidMount(){
-      const response=await fetch('https://8jygdy9ae3.execute-api.ap-southeast-1.amazonaws.com/dev/restaurant/100')
-      const body=await response.json();
-      this.setState({menuItems:body})
-      console.log(response)
-    }
+    // async componentDidMount(){
+    //   // const response=await fetch('https://8jygdy9ae3.execute-api.ap-southeast-1.amazonaws.com/dev/restaurant/100')
+    //   // const body=await response.json();
+    //   // this.setState({menuItems:body})
+    //   // console.log(response)
+    //   console.log(this.state.hello)
+    //  // console.log("React: "+JSON.stringify(this.props))
+    // }
 
-    render(){
-        return(
-            <div class="container">
-<p>{this.state.greeting}</p>
-<p>{this.state.menuItems.length}</p>
+    return(
+            <div className="container">
+                 
+<h1>{id}</h1>
 
-<img src="./images/burger2.jpg"/>
             <div class="row text-center">
                 <h2>MENU</h2>
                 <p>Select from our fresh meals as per your taste buds</p>
@@ -57,7 +57,7 @@ class RestaurantMenu extends Component{
         )
     }
 
-}
+
 
 export default RestaurantMenu;
 {/* /* <div id="allBurger" class="tab-pane fade in active text-center">
@@ -86,5 +86,8 @@ export default RestaurantMenu;
 
                 </div>
                 </div>
-                  </div> */}
+                  </div> */
+                
+                  //<img src="./images/burger2.jpg"/>
+                }
                  
