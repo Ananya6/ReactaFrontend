@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import { useNavigate, useHistory } from 'react-router-dom';
+import { useNavigate, useHistory, Link } from 'react-router-dom';
 
 function RestaurantCard(){
    
@@ -8,7 +8,7 @@ function RestaurantCard(){
         const id=event.target.value
         console.log(id)
        // const navigate = useNavigate();
-        /navigate('/restaurant/'+id);
+        //navigate('/restaurant/'+id);
        // history.push(`/restaurant`+id);
     }
 
@@ -23,7 +23,7 @@ function RestaurantCard(){
             <div className="row pad-category" >
                 <div className="category ">
                     <p className="justify-content-center">ABC's Kitchen</p>
-                <button type="btn butns btn-small spac" value="100" onClick={HandleClick}>Order</button>
+                <Link to="/restaurant/100"><button type="btn butns btn-small spac" value="100" onClick={HandleClick}>Order</button></Link>
                 </div>
             </div>
             </div>
@@ -34,7 +34,7 @@ function RestaurantCard(){
                 </div>
             <div className="row pad-category" >
                 <div className="category ">
-                <button type="btn butns btn-small spac" value="101">Order</button>
+                <Link to="/restaurant/101"><button type="btn butns btn-small spac" value="101">Order</button></Link>
                 </div>
             </div>
             </div>
@@ -45,7 +45,7 @@ function RestaurantCard(){
             </div>
             <div className="row pad-category" >
             <div className="category ">
-            <button type="btn butns btn-small spac" value="102">Order</button>
+            <Link to="/restaurant/102"><button type="btn butns btn-small spac" value="102">Order</button></Link>
             </div>
             </div>
             </div>
