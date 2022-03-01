@@ -1,7 +1,33 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import '../css/Menu.css';
 import { useHistory, useParams } from 'react-router-dom'
 
+import Amplify, { API } from 'aws-amplify';
+// import awsconfig from './aws-exports';
+
+// Amplify.configure(awsconfig);
+
+// Amplify.configure({
+//   // // OPTIONAL - if your API requires authentication 
+//   // Auth: {
+//   //     // REQUIRED - Amazon Cognito Identity Pool ID
+//   //     identityPoolId: 'XX-XXXX-X:XXXXXXXX-XXXX-1234-abcd-1234567890ab',
+//   //     // REQUIRED - Amazon Cognito Region
+//   //     region: 'XX-XXXX-X', 
+//   //     // OPTIONAL - Amazon Cognito User Pool ID
+//   //     userPoolId: 'XX-XXXX-X_abcd1234', 
+//   //     // OPTIONAL - Amazon Cognito Web Client ID (26-char alphanumeric string)
+//   //     userPoolWebClientId: 'a1b2c3d4e5f6g7h8i9j0k1l2m3',
+//   // },
+//   API: {
+//       endpoints: [
+//           {
+//               name: "MyAPIGatewayAPI",
+//               endpoint: "https://1234567890-abcdefgh.amazonaws.com"
+//           }
+//       ]
+//   }
+// });
 
 
 function RestaurantMenu(props){
@@ -9,6 +35,44 @@ function RestaurantMenu(props){
   const [count, greeting] = useState("Hello");
   let { id } = useParams();
 
+  useEffect(() => {
+    connectBackend();
+  });
+
+  async function connectBackend(){
+
+      Amplify.configure({
+        API: {
+            endpoints: [
+                {
+                    name: "apigwserverless",
+                    endpoint: "https://8jygdy9ae3.execute-api.ap-southeast-1.amazonaws.com"
+                }
+            ]
+        }
+      });
+
+          const apiName = 'apigwserverless';
+          const path = '/'; 
+          const myInit = { // OPTIONAL
+              // headers: {}, // OPTIONAL
+              response: true, // OPTIONAL (return the entire Axios response object instead of only response.data)
+              // queryStringParameters: {  // OPTIONAL
+              //     name: 'param',
+              // },
+          };
+
+          API
+          .get(apiName, path, myInit)
+          .then(response => {
+            // Add your code here
+            console.log("Connected ........\n")
+            console.log(response)
+          })
+          .catch(error => {
+            console.log(error.response);
+        });
+  }
     // async componentDidMount(){
     //   // const response=await fetch('https://8jygdy9ae3.execute-api.ap-southeast-1.amazonaws.com/dev/restaurant/100')
     //   // const body=await response.json();
