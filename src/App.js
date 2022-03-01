@@ -3,12 +3,12 @@ import './main.css';
 
 //import './components/Footer'
 import Footer from './components/Footer';
-import React, {Component} from "react"
+import React, { useState, useEffect } from "react"
 import RestaurantCard from './components/RestaurantCard';
 
-class App extends Component {
-  state={}
-  render() {
+function App() {
+ 
+  
     return(
       <div class="container">
         <div class="row text-center mid row-content" >
@@ -38,6 +38,6 @@ class App extends Component {
     // </div>
   )
 }
-}
+
 
 export default App;
