@@ -45,19 +45,19 @@ function RestaurantMenu(props){
 
   async function connectBackend(){
 
-      Amplify.configure({
-        API: {
-            endpoints: [
-                {
-                    name: "apigwserverless",
-                    endpoint: "https://8jygdy9ae3.execute-api.ap-southeast-1.amazonaws.com"
-                }
-            ]
-        }
-      });
+      // Amplify.configure({
+      //   API: {
+      //       endpoints: [
+      //           {
+      //               name: "apigwserverless",
+      //               endpoint: "https://8jygdy9ae3.execute-api.ap-southeast-1.amazonaws.com"
+      //           }
+      //       ]
+      //   }
+      // });
 
           const apiName = 'apigwserverless';
-          const path = '/dev/restaurant/'+id; 
+          const path = '/restaurant/'+id; 
           const myInit = { // OPTIONAL
               // headers: {}, // OPTIONAL
               response: true, // OPTIONAL (return the entire Axios response object instead of only response.data)

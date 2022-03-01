@@ -1,0 +1,132 @@
+{
+  "data": {
+    "Count": 3,
+    "Items": [
+      {
+        "ItemName": {
+          "S": "Paneer Burger"
+        },
+        "Sold Out": {
+          "BOOL": false
+        },
+        "ItemId": {
+          "N": "1"
+        },
+        "Veg": {
+          "BOOL": true
+        },
+        "RestaurantName": {
+          "S": "ABC Kitchen"
+        },
+        "ImageUrl": {
+          "S": "burger1.jpg"
+        },
+        "Price": {
+          "N": "250"
+        },
+        "RestaurantId": {
+          "N": "100"
+        },
+        "Category": {
+          "S": "Burger"
+        }
+      },
+      {
+        "ItemName": {
+          "S": "AlloTikki Burger"
+        },
+        "Sold Out": {
+          "BOOL": false
+        },
+        "ItemId": {
+          "N": "2"
+        },
+        "Veg": {
+          "BOOL": true
+        },
+        "RestaurantName": {
+          "S": "ABC Kitchen"
+        },
+        "ImageUrl": {
+          "S": "burger2.jpg"
+        },
+        "Price": {
+          "N": "120"
+        },
+        "RestaurantId": {
+          "N": "100"
+        },
+        "Category": {
+          "S": "Burger"
+        }
+      },
+      {
+        "ItemName": {
+          "S": "Chicken Sandwich"
+        },
+        "Sold Out": {
+          "BOOL": false
+        },
+        "ItemId": {
+          "N": "3"
+        },
+        "Veg": {
+          "BOOL": false
+        },
+        "RestaurantName": {
+          "S": "ABC Kitchen"
+        },
+        "ImageUrl": {
+          "S": "sandwich.jpg"
+        },
+        "Price": {
+          "N": "150"
+        },
+        "RestaurantId": {
+          "N": "100"
+        },
+        "Category": {
+          "S": "Sandwich"
+        }
+      }
+    ],
+    "ScannedCount": 3
+  },
+  "status": 200,
+  "statusText": "OK",
+  "headers": {
+    "content-length": "771",
+    "content-type": "application/json"
+  },
+  "config": {
+    "url": "https://8jygdy9ae3.execute-api.ap-southeast-1.amazonaws.com/dev/restaurant/100",
+    "method": "get",
+    "data": null,
+    "headers": {
+      "Accept": "application/json, text/plain, */*"
+    },
+    "transformRequest": [
+      null
+    ],
+    "transformResponse": [
+      null
+    ],
+    "timeout": 0,
+    "responseType": "json",
+    "xsrfCookieName": "XSRF-TOKEN",
+    "xsrfHeaderName": "X-XSRF-TOKEN",
+    "maxContentLength": -1,
+    "maxBodyLength": -1,
+    "cancelToken": {
+      "promise": {}
+    },
+    "transitional": {
+      "silentJSONParsing": true,
+      "forcedJSONParsing": true,
+      "clarifyTimeoutError": false
+    },
+    "host": "8jygdy9ae3.execute-api.ap-southeast-1.amazonaws.com",
+    "path": "/dev/restaurant/100"
+  },
+  "request": {}
+}

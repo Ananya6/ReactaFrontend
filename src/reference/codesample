@@ -1,0 +1,93 @@
+{
+    "Count": 3,
+    "Items": [
+      {
+        "ItemName": {
+          "S": "Paneer Burger"
+        },
+        "Sold Out": {
+          "BOOL": false
+        },
+        "ItemId": {
+          "N": "1"
+        },
+        "Veg": {
+          "BOOL": true
+        },
+        "RestaurantName": {
+          "S": "ABC Kitchen"
+        },
+        "ImageUrl": {
+          "S": "burger1.jpg"
+        },
+        "Price": {
+          "N": "250"
+        },
+        "RestaurantId": {
+          "N": "100"
+        },
+        "Category": {
+          "S": "Burger"
+        }
+      },
+      {
+        "ItemName": {
+          "S": "AlloTikki Burger"
+        },
+        "Sold Out": {
+          "BOOL": false
+        },
+        "ItemId": {
+          "N": "2"
+        },
+        "Veg": {
+          "BOOL": true
+        },
+        "RestaurantName": {
+          "S": "ABC Kitchen"
+        },
+        "ImageUrl": {
+          "S": "burger2.jpg"
+        },
+        "Price": {
+          "N": "120"
+        },
+        "RestaurantId": {
+          "N": "100"
+        },
+        "Category": {
+          "S": "Burger"
+        }
+      },
+      {
+        "ItemName": {
+          "S": "Chicken Sandwich"
+        },
+        "Sold Out": {
+          "BOOL": false
+        },
+        "ItemId": {
+          "N": "3"
+        },
+        "Veg": {
+          "BOOL": false
+        },
+        "RestaurantName": {
+          "S": "ABC Kitchen"
+        },
+        "ImageUrl": {
+          "S": "sandwich.jpg"
+        },
+        "Price": {
+          "N": "150"
+        },
+        "RestaurantId": {
+          "N": "100"
+        },
+        "Category": {
+          "S": "Sandwich"
+        }
+      }
+    ],
+    "ScannedCount": 3
+  }
