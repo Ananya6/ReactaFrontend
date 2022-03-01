@@ -3,6 +3,10 @@ import '../css/Menu.css';
 import { useHistory, useParams } from 'react-router-dom'
 
 import Amplify, { API } from 'aws-amplify';
+
+
+
+
 // import awsconfig from './aws-exports';
 
 // Amplify.configure(awsconfig);
@@ -53,7 +57,7 @@ function RestaurantMenu(props){
       });
 
           const apiName = 'apigwserverless';
-          const path = '/'; 
+          const path = '/dev/restaurant/'+id; 
           const myInit = { // OPTIONAL
               // headers: {}, // OPTIONAL
               response: true, // OPTIONAL (return the entire Axios response object instead of only response.data)
@@ -67,7 +71,9 @@ function RestaurantMenu(props){
           .then(response => {
             // Add your code here
             console.log("Connected ........\n")
-            console.log(response)
+            console.log(response.data.Items)
+            //response.data.count
+            
           })
           .catch(error => {
             console.log(error.response);
