@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import '../css/Menu.css';
-import { useHistory, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 import Amplify, { API } from 'aws-amplify';
 

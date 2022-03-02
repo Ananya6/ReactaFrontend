@@ -5,7 +5,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import RestaurantMenu from './routes/RestaurantMenu';
+import Login from "./routes/Login"
 import Amplify, { Auth } from 'aws-amplify';
+import {Authenticator, useAuthenticator} from '@aws-amplify/ui-react'
+import PageWithProvider from './routes/PageWithProvider';
+import Navbar from './components/Navbar';
+import NavbarWithAuth from './components/Navbar';
+
+
 
 const rootElement = document.getElementById("root");
 
@@ -21,55 +28,35 @@ Amplify.configure({
         // OPTIONAL - Amazon Cognito User Pool ID
         userPoolId: 'ap-southeast-1_B0EhWzL6o',
 
+        userPoolWebClientId: '487vfhufrc9rp84a6st8hrme7b',
+
         // OPTIONAL - Enforce user authentication prior to accessing AWS resources or not
         mandatorySignIn: false,
-
-        // OPTIONAL - Configuration for cookie storage
-        // Note: if the secure flag is set to true, then the cookie transmission requires a secure protocol
-        // cookieStorage: {
-        // // REQUIRED - Cookie domain (only required if cookieStorage is provided)
-        //     domain: '.yourdomain.com',
-        // // OPTIONAL - Cookie path
-        //     path: '/',
-        // // OPTIONAL - Cookie expiration in days
-        //     expires: 365,
-        // // OPTIONAL - See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
-        //     sameSite: "strict" | "lax",
-        // // OPTIONAL - Cookie secure flag
-        // // Either true or false, indicating if the cookie transmission requires a secure protocol (https).
-        //     secure: true
-        // },
-
-        // // OPTIONAL - customized storage object
-        // storage: MyStorage,
-        
-        // // OPTIONAL - Manually set the authentication flow type. Default is 'USER_SRP_AUTH'
-        // authenticationFlowType: 'USER_PASSWORD_AUTH',
-
-        // // OPTIONAL - Manually set key value pairs that can be passed to Cognito Lambda Triggers
-        // clientMetadata: { myCustomKey: 'myCustomValue' },
-
-         // OPTIONAL - Hosted UI configuration
-        // oauth: {
-        //     domain: 'your_cognito_domain',
-        //     scope: ['phone', 'email', 'profile', 'openid', 'aws.cognito.signin.user.admin'],
-        //     redirectSignIn: 'http://localhost:3000/',
-        //     redirectSignOut: 'http://localhost:3000/',
-        //     responseType: 'code' // or 'token', note that REFRESH token will only be generated when the responseType is code
-        // }
     }
 });
 
 const session=Auth.currentSession();
-console.log(session)
+console.log("Hello session "+session)
+
+
+
+
 
 ReactDOM.render(
-  <BrowserRouter>
-      <Routes>
-    <Route path="/" element={<App />} />
-    <Route path="/restaurant/:id" element={<RestaurantMenu/>}/>
-    </Routes>
-  </BrowserRouter>,
+  <div>
+ 
+    
+    <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<NavbarWithAuth />} >
+            <Route path="main" element={<App />} />
+          <Route path="home" element={<PageWithProvider/>} />
+          <Route path="restaurant/:id" element={<RestaurantMenu/>}/>
+        </Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
+  ,
   rootElement
 );
 
