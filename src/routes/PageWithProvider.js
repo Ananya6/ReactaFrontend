@@ -1,4 +1,4 @@
-import React,  { useState, useEffect }from 'react';
+{/* import React,  { useState, useEffect }from 'react';
 import Amplify, { Auth } from 'aws-amplify';
 import {Authenticator, useAuthenticator} from '@aws-amplify/ui-react'
 import '@aws-amplify/ui-react/styles.css';
@@ -34,4 +34,4 @@ const Home = () => {
       </Authenticator.Provider>
     );
   }
-  
+*/}

@@ -9,7 +9,6 @@ import Login from "./routes/Login"
 import Amplify, { Auth } from 'aws-amplify';
 import {Authenticator, useAuthenticator} from '@aws-amplify/ui-react'
 import PageWithProvider from './routes/PageWithProvider';
-import Navbar from './components/Navbar';
 import NavbarWithAuth from './components/Navbar';
 
 
@@ -39,9 +38,6 @@ const session=Auth.currentSession();
 console.log("Hello session "+session)
 
 
-
-
-
 ReactDOM.render(
   <div>
  
@@ -49,8 +45,7 @@ ReactDOM.render(
     <BrowserRouter>
         <Routes>
           <Route path="/" element={<NavbarWithAuth />} >
-            <Route path="main" element={<App />} />
-          <Route path="home" element={<PageWithProvider/>} />
+            <Route path="main" element={<App />} /> 
           <Route path="restaurant/:id" element={<RestaurantMenu/>}/>
         </Route>
         </Routes>
@@ -60,6 +55,7 @@ ReactDOM.render(
   rootElement
 );
 
+//<Route path="home" element={<PageWithProvider/>} />
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -1,7 +1,7 @@
 import React,  { useState, useEffect }from 'react';
 import Amplify, { Auth } from 'aws-amplify';
-import {Authenticator, useAuthenticator} from '@aws-amplify/ui-react'
-import '@aws-amplify/ui-react/styles.css';
+//import {Authenticator, useAuthenticator} from '@aws-amplify/ui-react'
+//import '@aws-amplify/ui-react/styles.css';
 import '../css/NavStyles.css'
 import { Outlet } from "react-router-dom";
 
@@ -25,10 +25,10 @@ const Login=()=>{
 
 
 const Navbar=()=>{
-    const { route } = useAuthenticator((context) => [context.route]);
-    let button;
+    // const { route } = useAuthenticator((context) => [context.route]);
+    // let button;
 
-    button=(route === 'authenticated')?<Logout/>:<Login/>
+    // button=(route === 'authenticated')?<Logout/>:<Login/>
     
     const greeting="hello";
 
@@ -67,8 +67,8 @@ const Navbar=()=>{
               
 
     </ul> */}
-    {button}
-    
+    {/* {button} */}
+    <Login />
           </div>
         </div>
       </nav>
@@ -81,12 +81,11 @@ const Navbar=()=>{
 export default function NavbarWithAuth() {
     return (
         <div>
-      <Authenticator.Provider>
+      {/* <Authenticator.Provider> */}
         <Navbar/>
-      </Authenticator.Provider>
+      {/* </Authenticator.Provider> */}
       <Outlet />
       </div>
     );
   }
 
-  
