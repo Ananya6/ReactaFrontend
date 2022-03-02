@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-serverlessreact-dev-233638-authRole",
+      "UnauthRoleArn": "arn:aws:iam::439529839215:role/amplify-serverlessreact-dev-233638-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::439529839215:role/amplify-serverlessreact-dev-233638-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-serverlessreact-dev-233638-deployment",
+      "UnauthRoleName": "amplify-serverlessreact-dev-233638-unauthRole",
+      "StackName": "amplify-serverlessreact-dev-233638",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:439529839215:stack/amplify-serverlessreact-dev-233638/5f2df360-94d3-11ec-9d32-063b73cbe662",
+      "AmplifyAppId": "dw6gy01wx7lcj"
+    },
+    "categories": {
+      "function": {
+        "items": {
+          "deploymentBucketName": "amplify-serverlessreact-dev-233638-deployment",
+          "s3Key": "amplify-builds/items-78784a4f5855414a6a6a-build.zip"
+        }
+      },
+      "auth": {
+        "serverlessreact1f7aca86": {}
+      }
+    }
+  }
+}

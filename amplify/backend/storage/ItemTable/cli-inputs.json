@@ -1,0 +1,26 @@
+{
+  "resourceName": "ItemTable",
+  "tableName": "eiifccujiflhlnrjgbcvtevrvenvdttkvdrgvcvkuvfg",
+  "partitionKey": {
+    "fieldName": "ItemId",
+    "fieldType": "number"
+  },
+  "sortKey": {
+    "fieldName": "RestaurantName",
+    "fieldType": "string"
+  },
+  "gsi": [
+    {
+      "name": "test",
+      "partitionKey": {
+        "fieldName": "RestaurantName",
+        "fieldType": "string"
+      },
+      "sortKey": {
+        "fieldName": "ItemId",
+        "fieldType": "number"
+      }
+    }
+  ],
+  "triggerFunctions": []
+}
