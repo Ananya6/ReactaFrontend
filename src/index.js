@@ -20,7 +20,7 @@ Amplify.configure({
     Auth: {
 
         // REQUIRED only for Federated Authentication - Amazon Cognito Identity Pool ID
-        identityPoolId: 'ap-southeast-1:d9533748-bc35-40b6-8e97-4ad58270f27c',
+      //  identityPoolId: 'ap-southeast-1:d9533748-bc35-40b6-8e97-4ad58270f27c',
         
         // REQUIRED - Amazon Cognito Region
         region: 'ap-southeast-1',
@@ -35,22 +35,26 @@ Amplify.configure({
     }
 });
 
-const session=Auth.currentSession();
-console.log("Hello session "+session)
-
-
+Amplify.configure({
+  API: {
+      endpoints: [
+          {
+              name: "apigwserverless",
+              endpoint: "https://8jygdy9ae3.execute-api.ap-southeast-1.amazonaws.com"
+          }
+      ]
+  }
+});
 
 
 
 ReactDOM.render(
   <div>
- 
-    
-    <BrowserRouter>
+   <BrowserRouter>
         <Routes>
           <Route path="/" element={<NavbarWithAuth />} >
-            <Route path="main" element={<App />} />
-          <Route path="home" element={<PageWithProvider/>} />
+            <Route path="home" element={<App />} />
+          <Route path="login" element={<PageWithProvider/>} />
           <Route path="restaurant/:id" element={<RestaurantMenu/>}/>
         </Route>
         </Routes>
@@ -59,13 +63,9 @@ ReactDOM.render(
   ,
   rootElement
 );
-
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+ 
 reportWebVitals();
 
-//<Route path="invoices" element={<Invoices />} />
+
 
 //    <Route path="restaurant" element={<RestaurantMenu />} />

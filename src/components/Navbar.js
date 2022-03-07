@@ -28,7 +28,7 @@ const Navbar=()=>{
     const { route } = useAuthenticator((context) => [context.route]);
     let button;
 
-    button=(route === 'authenticated')?<Logout/>:<Login/>
+    button=(route === 'c')?<Logout/>:<Login/>
     
     const greeting="hello";
 
@@ -50,11 +50,8 @@ const Navbar=()=>{
           {/* <!-- Collect the nav links, forms, and other content for toggling --> */}
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
-              <li className="active"><a href="./menu">Menu </a></li>
-              <li><a href="#">Loyalty Program</a></li>
+              <li className="active"><a href="./menu">Home </a></li>
               <li><a href="#">About Us</a></li>
-              <li><a href="#bottom" id="contact">Contact Us</a></li>
-              <li><a href="./create-your-own-meal">Create your own meal</a></li>
             </ul>
       
             {/* <ul className="nav navbar-nav navbar-right">

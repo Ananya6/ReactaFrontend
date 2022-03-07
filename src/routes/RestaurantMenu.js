@@ -4,123 +4,83 @@ import { useParams } from 'react-router-dom'
 
 import Amplify, { API } from 'aws-amplify';
 
-
-
-
-// import awsconfig from './aws-exports';
-
-// Amplify.configure(awsconfig);
-
-// Amplify.configure({
-//   // // OPTIONAL - if your API requires authentication 
-//   // Auth: {
-//   //     // REQUIRED - Amazon Cognito Identity Pool ID
-//   //     identityPoolId: 'XX-XXXX-X:XXXXXXXX-XXXX-1234-abcd-1234567890ab',
-//   //     // REQUIRED - Amazon Cognito Region
-//   //     region: 'XX-XXXX-X', 
-//   //     // OPTIONAL - Amazon Cognito User Pool ID
-//   //     userPoolId: 'XX-XXXX-X_abcd1234', 
-//   //     // OPTIONAL - Amazon Cognito Web Client ID (26-char alphanumeric string)
-//   //     userPoolWebClientId: 'a1b2c3d4e5f6g7h8i9j0k1l2m3',
-//   // },
-//   API: {
-//       endpoints: [
-//           {
-//               name: "MyAPIGatewayAPI",
-//               endpoint: "https://1234567890-abcdefgh.amazonaws.com"
-//           }
-//       ]
-//   }
-// });
-
-
 function RestaurantMenu(props){
    
-  const [count, greeting] = useState("Hello");
+  const [menuItemArr, setMenuArr] = useState([]);
   let { id } = useParams();
-
+  const [menuDom, setMenu]=useState([])
   useEffect(() => {
     connectBackend();
-  });
+    
+  },[]);
 
   async function connectBackend(){
-
-      Amplify.configure({
-        API: {
-            endpoints: [
-                {
-                    name: "apigwserverless",
-                    endpoint: "https://8jygdy9ae3.execute-api.ap-southeast-1.amazonaws.com"
-                }
-            ]
-        }
-      });
-
           const apiName = 'apigwserverless';
           const path = '/dev/restaurant/'+id; 
           const myInit = { // OPTIONAL
               // headers: {}, // OPTIONAL
               response: true, // OPTIONAL (return the entire Axios response object instead of only response.data)
-              // queryStringParameters: {  // OPTIONAL
-              //     name: 'param',
-              // },
+
           };
 
-          API
+        await API
           .get(apiName, path, myInit)
           .then(response => {
-            // Add your code here
-            console.log("Connected ........\n")
-            console.log(response.data.Items)
-            //response.data.count
+            console.log("Connected ........\n"+apiName+path)
             
+            setMenuArr(response.data.Menu)
+            console.log(menuItemArr)
           })
           .catch(error => {
             console.log(error.response);
         });
+
+        CreateItem()
   }
-    // async componentDidMount(){
-    //   // const response=await fetch('https://8jygdy9ae3.execute-api.ap-southeast-1.amazonaws.com/dev/restaurant/100')
-    //   // const body=await response.json();
-    //   // this.setState({menuItems:body})
-    //   // console.log(response)
-    //   console.log(this.state.hello)
-    //  // console.log("React: "+JSON.stringify(this.props))
-    // }
+
+  
+
+  function CreateItem(){
+    console.log("Creating Item")
+   var allitems= menuItemArr.map(item =>
+    <div class=" col-md-4 col-xs-6 img-container-lg" >
+        <div class="row" >
+          <img src={`./image/${item.ImageUrl}`} class="img-lg"/>
+        </div>
+        <div class="row padding-description">
+        <div class="item-desc " align="left">
+          <div>
+            
+              <img class="veg-mark" align="right" width="20px" src='./images/veg-mark.png'/>
+            
+              <h4>{item.ItemName}</h4>
+        </div>
+          
+          <hr class="hr-divider"/>
+          <div class="clearfix menu-item-bottom">
+            <span class="cost">&#8377;</span><span>{item.Price}</span>
+            <span ><button class="btn btn-xs green-button pull-right" align="right" data-toggle="modal" data-obj-id="1" data-target="#myModal">
+                Add to cart</button></span>
+          </div>
+
+        </div>
+         </div>
+    </div>)
+   setMenu(allitems)
+
+  }
 
     return(
             <div className="container">
                  
-<h1>{id}</h1>
 
+      
             <div class="row text-center">
                 <h2>MENU</h2>
                 <p>Select from our fresh meals as per your taste buds</p>
             </div>
             <div id="allBurger" class="tab-pane fade in active text-center">
-                 <div class=" col-md-4 col-xs-6 img-container-lg" >
-              <div class="row" >
-                <img src="./images/salad.jpg" class="img-lg"/>
-              </div>
-              <div class="row padding-description">
-              <div class="item-desc " align="left">
-                <div>
-                  
-                    <img class="veg-mark" align="right" width="20px" src='./images/veg-mark.png'/>
-                  
-                    <h4>Salad</h4>
-              </div>
-                
-                <hr class="hr-divider"/>
-                <div class="clearfix menu-item-bottom">
-                  <span class="cost">&#8377;</span><span>287</span>
-                  <span ><button class="btn btn-xs green-button pull-right" align="right" data-toggle="modal" data-obj-id="1" data-target="#myModal">
-                      Add to cart</button></span>
-                </div>
-
-                </div>
-                </div>
-                  </div>
+                  {menuDom}
             </div>
             </div>
 

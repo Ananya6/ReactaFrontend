@@ -23,7 +23,7 @@ function RestaurantCard(){
             <div className="row pad-category" >
                 <div className="category ">
                     <p className="justify-content-center">ABC's Kitchen</p>
-                <Link to="/restaurant/100"><button type="btn butns btn-small spac" value="100" onClick={HandleClick}>Order</button></Link>
+                <Link to="/restaurant/1"><button type="btn butns btn-small spac" value="100" onClick={HandleClick}>Order</button></Link>
                 </div>
             </div>
             </div>
@@ -34,7 +34,7 @@ function RestaurantCard(){
                 </div>
             <div className="row pad-category" >
                 <div className="category ">
-                <Link to="/restaurant/101"><button type="btn butns btn-small spac" value="101">Order</button></Link>
+                <Link to="/restaurant/2"><button type="btn butns btn-small spac" value="101">Order</button></Link>
                 </div>
             </div>
             </div>
@@ -45,7 +45,7 @@ function RestaurantCard(){
             </div>
             <div className="row pad-category" >
             <div className="category ">
-            <Link to="/restaurant/102"><button type="btn butns btn-small spac" value="102">Order</button></Link>
+            <Link to="/restaurant/3"><button type="btn butns btn-small spac" value="102">Order</button></Link>
             </div>
             </div>
             </div>
