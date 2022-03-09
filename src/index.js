@@ -11,8 +11,8 @@ import {Authenticator, useAuthenticator} from '@aws-amplify/ui-react'
 import PageWithProvider from './routes/PageWithProvider';
 import Navbar from './components/Navbar';
 import NavbarWithAuth from './components/Navbar';
-
-
+import GetCart from './routes/GetCart';
+import Checkout from './routes/Checkout';
 
 const rootElement = document.getElementById("root");
 
@@ -56,6 +56,8 @@ ReactDOM.render(
             <Route path="home" element={<App />} />
           <Route path="login" element={<PageWithProvider/>} />
           <Route path="restaurant/:id" element={<RestaurantMenu/>}/>
+          <Route path="/cart" element={<GetCart/>}/>
+          <Route path="/checkout" element={<Checkout />}/>
         </Route>
         </Routes>
       </BrowserRouter>

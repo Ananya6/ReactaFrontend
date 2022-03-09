@@ -7,8 +7,8 @@ import { Outlet } from "react-router-dom";
 
 const Logout=()=>{
     return(
-
-    <ul className="nav navbar-nav navbar-right"><li><button type="button" className="btn btn-sm navbar-btn btn-outline-secondary" align="right" id="register" onclick="location.href = '/logout';">Logout</button></li></ul>
+//onclick="location.href = '/logout';"
+    <ul className="nav navbar-nav navbar-right"><li key="logout"><button type="button" className="btn btn-sm navbar-btn btn-outline-secondary" align="right" id="register" >Logout</button></li></ul>
 
     )
 }
@@ -16,8 +16,8 @@ const Logout=()=>{
 const Login=()=>{
     return(
         <ul className="nav navbar-nav navbar-right">
-                <li><button type="button" className="btn btn-sm navbar-btn btn-outline-secondary" align="right" id="register" onclick="location.href = '/register';">Register</button></li>
-          <li><button className="btn btn-sm navbar-btn btn-outline-secondary" align="right" type="button" onclick="location.href = '/login';">Login</button></li>
+                <li><button type="button" className="btn btn-sm navbar-btn btn-outline-secondary" key="register" align="right" id="register" onClick="location.href = '/register'}">Register</button></li>
+          <li><button className="btn btn-sm navbar-btn btn-outline-secondary" key="login" align="right" type="button" onClick="location.href = '/login';">Login</button></li>
           </ul>
     )
 }
@@ -47,24 +47,22 @@ const Navbar=()=>{
             <a className="navbar-brand" href="/home">LOGO<span className="sr-only">(current)</span></a>
           </div>
       
-          {/* <!-- Collect the nav links, forms, and other content for toggling --> */}
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
               <li className="active"><a href="./menu">Home </a></li>
               <li><a href="#">About Us</a></li>
             </ul>
       
-            {/* <ul className="nav navbar-nav navbar-right">
-              {/* <li className="shop-cart">
+            <ul className="nav navbar-nav navbar-right">
+              <li key="cart" className="shop-cart">
                 <a href="/cart" align="right">
-                  <i className="fa fa-shopping-cart cart-icon" aria-hidden="true" style="padding: 10px 28px 2px 12px"></i>
-                  <span className="badge">{{session.cart.totalQty}}</span>
+                  <i className="fa fa-shopping-cart cart-icon" aria-hidden="true" ></i>
                 </a>
               </li> 
               
-
-    </ul> */}
-    {button}
+              {button}
+           </ul>
+    
     
           </div>
         </div>

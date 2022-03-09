@@ -1,0 +1,113 @@
+
+
+<script>
+  $('#collapseButton1').click(function() {
+   $('#time').trigger('click');
+   $('#pickup').trigger('click');
+  // $("#accordion").accordion("option", "active", $("#panel2").index("#accordion div"));
+  });
+  $('#collapseButton2').click(function() {
+   $('#time').trigger('click');
+   $('#pickup').trigger('click');
+  // $("#accordion").accordion("option", "active", $("#panel2").index("#accordion div"));
+  });
+  $('#collapseButton3').click(function() {
+   $('#time').trigger('click');
+   $('#pickup').trigger('click');
+  // $("#accordion").accordion("option", "active", $("#panel2").index("#accordion div"));
+  });
+
+
+   $(document).ready(function () {
+
+      $('#pickup').trigger('click');
+    var tot=parseFloat($("#total").text()).toFixed(2);
+
+    var dis=parseFloat($("#discount").text()).toFixed(2);
+
+    var base=parseFloat(tot-dis);
+    var tx=parseFloat(Math.round(0.05*base)).toFixed(2);
+    var pay=parseFloat(base)+parseFloat(tx);
+    $("#base").text(function(n, c){
+                return base;
+            });
+    $("#tax").text(function(n, c){
+                return tx;
+                });
+    $("#totalPayable").text(function(n, c){
+                return pay;
+            });
+   // $("#OrderPlacedModal").modal('show');
+   });
+
+  $("#timingForm input[type='radio']").click(function(){
+     $('#orderSummary').trigger('click');
+      $('#time').trigger('click');
+  })
+
+   $('#collapseSummary').on('shown.bs.collapse', function () {
+         var time=$("#timingForm input[type='radio']:checked").val();
+         var address;
+         var price=$("#totalPayable").text();
+         if($('#addr1').is(':checked')) { address=$('#addr1').val(); }
+         if($('#addr2').is(':checked')) { address=$('#addr2').val(); }
+         if($('#addr3').is(':checked')) { address=($('#addr3').val()); }
+         $("#pickupSelected").val(function(n, c){
+                     return address;
+                 });
+         $("#timeSelected").val(function(n, c){
+                     return time;
+         });
+         $("#finalPrice").val(function(n, c){
+                     return price;
+         });
+
+           //'input[name=timing]:checked', '#timingForm').val());
+   });
+   // $('#OrderPlacedModal').modal({
+   //     backdrop: 'static',
+   //     keyboard: false
+   //   });
+
+
+  // var acc = document.getElementsByClassName("accordion");
+  // var panel = document.getElementsByClassName('bdy');
+  //
+  // for (var i = 0; i < acc.length; i++) {
+  //     acc[i].onclick = function() {
+  //         var setClasses = !this.classList.contains('active');
+  //         setClass(acc, 'active', 'remove');
+  //         setClass(panel, 'show', 'remove');
+  //
+  //         if (setClasses) {
+  //             this.classList.toggle("active");
+  //             this.nextElementSibling.classList.toggle("show");
+  //         }
+  //     }
+  // }
+  //
+  // function setClass(els, className, fnName) {
+  //     for (var i = 0; i < els.length; i++) {
+  //         els[i].classList[fnName](className);
+  //     }
+//   // }
+//   var acc = document.getElementsByClassName("accordion");
+// var i;
+//
+// for (i = 0; i < acc.length; i++) {
+//     acc[i].onclick = function() {
+//         hideAll();
+//
+//         this.classList.toggle("active");
+//         this.nextElementSibling.classList.toggle("show");
+//     }
+// }
+//
+// function hideAll() {
+//     for (i = 0; i < acc.length; i++) {
+//         acc[i].classList.toggle("active", false);
+//         acc[i].nextElementSibling.classList.toggle("show", false);
+//     }
+// }
+
+</script>

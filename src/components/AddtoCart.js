@@ -1,8 +1,6 @@
 import React from "react"
 
-
-
-export default function Footer(){
+export default function AddToCart(){
     return(
         <footer>
             Hi This is Footer
