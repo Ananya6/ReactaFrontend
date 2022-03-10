@@ -71,22 +71,21 @@ function RestaurantMenu(props){
   const [menuDom, setMenu]=useState([])
 
   useEffect(() => {
-    connectBackend();
-    CreateItem()
-  },[]);
+     connectBackend();
+    
+  },[menuItemArr]);
 
    async function connectBackend(){
           const apiName = 'apigwserverless';
           const path = '/dev/restaurant/'+id; 
-          const myInit = { // OPTIONAL
-              response: true, // OPTIONAL (return the entire Axios response object instead of only response.data)
-          };
 
-         await API
-          .get(apiName, path, myInit)
+          await API
+          .get(apiName, path)
           .then(response => {
             console.log("Connected ........\n"+apiName+path)
-            setMenuArr(response.data.Menu)
+            setMenuArr(response.Menu)
+            console.log(menuItemArr)
+            CreateItem()
             
           })
           .catch(error => {
