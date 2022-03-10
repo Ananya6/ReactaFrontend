@@ -68,12 +68,13 @@ function RestaurantMenu(props){
   "ImageUrl": "burger.jpg",
   "RestaurantId": 1}]);
   let { id } = useParams();
+  const [fetchMenu, setfetchMenu]=useState("false")
   const [menuDom, setMenu]=useState([])
 
   useEffect(() => {
      connectBackend();
     
-  },[menuItemArr]);
+  },[fetchMenu]);
 
    async function connectBackend(){
           const apiName = 'apigwserverless';
@@ -82,8 +83,10 @@ function RestaurantMenu(props){
           await API
           .get(apiName, path)
           .then(response => {
+
             console.log("Connected ........\n"+apiName+path)
             setMenuArr(response.Menu)
+            setfetchMenu("ft")
             console.log(menuItemArr)
             CreateItem()
             
