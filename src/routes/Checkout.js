@@ -1,29 +1,186 @@
-import React from "react"
+import React, { useState, useEffect }  from "react"
 import "../css/ShoppingCart.css"
+import { useLocation, useParams } from "react-router-dom";
+import {Container, Button, Form, FormGroup, Placeholder} from 'react-bootstrap';
+import { API } from 'aws-amplify';
+import { useNavigate } from "react-router-dom";
+import { IconAgriculture } from "@aws-amplify/ui-react";
+
+// import FormControl, from 'react-bootstrap/lib/FormControl';
+
+const formState = { addr: '' };
+
+function updateFormState(key, value) {
+  formState[key] = value;
+}
 
 
-
-export default function Checkout(props){
-    return(
-        <div className="container">
-        <div className="row">
-            <div className="col-xs-8 col-xs-offset-2" >
+export default function Checkout(){
+    const [inputValue, setInputValue] = useState("")
+    const [orderSubmit, setOrderSubmit]=useState(false)
+    let navigate = useNavigate();
+    const [cart, createCart] = useState({})
+    var props=useLocation()
+    console.log(props)
     
-                <div className="accordion " id="accordionExample">
-                    <div className="card mb-2">
-                        <div className="card-header " id="headingOne">
-                            <h5 className="mb-0 d-flex align-items-center">
-                                <span className="sno">
-                                    1.
-                                </span>
-                                <button className="btn btn-link " id="pickup" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    PICK UP ADDRESS
-                                </button>
-                            </h5>
-                        </div>
+    useEffect(() => {
+        if(props.state===null)
+            createCart({
+                TotalPrice:988
+            })
+        else
+          createCart(props.state.Cart)
+      },[]);
+
+      let handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        // console.log(name)
+      }
+
+      async function PlaceOrder(){
     
-                        <div id="collapseOne" className="collapse bdy" aria-labelledby="headingOne" data-parent="#accordionExample">
-                            <div className="card-body ">
+        console.log("In Place Holder")
+    
+        //let navigate = useNavigate();
+        const apiName = 'apigwserverless'; // replace this with your api name.
+        const path = '/dev/checkout'; //replace this with the path you have configured on your API
+        const myInit = {
+            body: {
+                address: inputValue,
+                cart: cart
+            }, 
+        };
+    
+        await API
+        .post(apiName, path, myInit)
+        .then(response => {
+            console.log(response)
+            setInputValue(true)
+        })
+        .catch(error => {
+            console.log(error.response);
+        });   
+       
+    }
+
+    return(<div>
+
+<div className="App">
+
+    <input type="text" onChange={(e) => setInputValue(e.target.value)} ></input>
+      <button onClick={PlaceOrder}>search</button>    
+      {/* <form onSubmit={PlaceOrder}>
+        <input
+          type="text"
+          value={name}
+          placeholder="Name"
+          onChange={(e) => setName(e.target.value)}
+        />
+  
+
+        <button type="submit">Create</button>
+
+      </form> */}
+    </div>
+            
+             {/* <Form>
+                <FormGroup>
+                    <Form.Control placeholder="Addr" onChange={e => updateFormState('addr', e.target.value)} />
+                </FormGroup>
+                <button className="remove mt-5 py-3 px-5" id="confirm" type="submit" onClick={()=>PlaceOrder(cart)} >CONFIRM ORDER</button>
+            </Form> */}
+                            {/* <button className="remove mt-5 py-3 px-5" id="confirm" type="submit" onClick={()=>PlaceOrder(cart)} >CONFIRM ORDER</button> */}
+            </div>
+
+        // <div className="container">
+        // <div className="row">
+        //     <div className="col-xs-8 col-xs-offset-2" >
+        //     <div className="accordion " id="accordionExample">
+
+        //     <div className="card mb-2">
+        //                 <div className="card-header " id="headingOne">
+        //                     <h5 className="mb-0 d-flex align-items-center">
+        //                         <span className="sno">
+        //                             1.
+        //                         </span>
+        //                         <button className="btn btn-link " type="button" id="orderSummary" data-toggle="collapse" data-target="#collapseSummary" aria-expanded="true" aria-controls="collapseSummary">
+        //                           ORDER SUMMARY
+        //                         </button>
+        //                     </h5>
+        //                 </div>
+    
+        //                     <div className="card-body ">
+    
+        //                         <div className="summary">
+        //                             <div className="form-check justify-content-start align-items-center ">
+        //                                 <div className="container">
+        //                                     <div className="row justify-content-center">
+        //                                         <div className="col-xs-3">
+        //                                             <p className="summaryinfo">Total</p>
+        //                                             <p className="summaryinfo">CGST + SGST@5%</p>
+        //                                             <h4 className="payable">Total Payable</h4>
+        //                                         </div>
+        //                                         <div className="col-xs-3 ">
+        //                                             <p className="summaryinfo" >&#8377;<span id="total" >{cart.TotalPrice}</span></p>
+        //                                             <p className="summaryinfo" >&#8377;<span id="tax">{0.05*`${cart.TotalPrice}`}</span> </p>
+        //                                             <h4 className="payable" >&#8377;<span id="totalPayable">{cart.TotalPrice+0.05*`${cart.TotalPrice}`}</span></h4>
+    
+        //                                         </div>
+    
+        //                                     </div>
+                                           
+        //                                 </div>
+        //                             </div>
+        //                         </div>
+    
+        //                     </div>
+        //                 </div>
+        //             </div>
+        //         </div>
+    
+        //         <div className="accordion " id="accordionExample">
+        //             <div className="card mb-2">
+        //                 <div className="card-header " id="headingOne">
+        //                     <h5 className="mb-0 d-flex align-items-center">
+        //                         <span className="sno">
+        //                             2.
+        //                         </span>
+        //                         <button className="btn btn-link " id="pickup" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        //                             ENTER YOUR ADDRESS
+        //                         </button>
+        //                     </h5>
+        //                     {/* <form className="ml-auto form" method="post" action="/checkout"> */}
+        //                     <Form>
+        //                         <FormGroup>
+        //                         <Form.Control placeholder="Addr" onChange={e => updateFormState('addr', e.target.value)} />
+        //                         </FormGroup>
+        //                         <button className="remove mt-5 py-3 px-5" id="confirm" type="submit" onClick={()=>PlaceOrder(cart)} >CONFIRM ORDER</button>
+        //                     </Form>
+        //                                         {/* <input id="pickupSelected" name="pickupSelected" type="hidden"/>
+        //                                         <input id="timeSelected" name="timeSelected" type="hidden"/>
+        //                                         <input id="finalPrice" name="finalPrice" type="hidden"/> */}
+                                               
+                                         
+        //                 </div>
+    
+                          
+        //                 </div>  
+    
+        //         </div>
+    
+                   
+        //    </div>
+        //    </div>
+         
+   
+    )
+}
+
+
+{/*
+
+  <div className="card-body ">
     
                                 <div className="Corporate">
                                     <div className="form-check d-flex justify-content-start align-items-center " id="addrForm">
@@ -61,11 +218,9 @@ export default function Checkout(props){
     
     
     
-                                </div>
                             </div>
-                        </div>
-    
-                    <div className="card mb-2" >
+
+<div className="card mb-2" >
                         <div className="card-header" id="headingOne">
                             <h5 className="mb-0 d-flex align-items-center">
                                 <span className="sno">
@@ -77,8 +232,7 @@ export default function Checkout(props){
                             </h5>
                         </div>
     
-                        <div id="collapseTime" className="collapse bdy" aria-labelledby="headingOne" data-parent="#accordionExample">
-                            <div className="card-body ">
+\                            <div className="card-body ">
     
                                 <div className="time">
                                     <div className="form-check d-flex justify-content-start align-items-center " id="timingForm">
@@ -88,84 +242,9 @@ export default function Checkout(props){
     
     
     
-                                    </div>
+                                   
                                 </div>
                             </div>
                         </div>
-                    </div>
-    
-                    <div className="card mb-2">
-                        <div className="card-header " id="headingOne">
-                            <h5 className="mb-0 d-flex align-items-center">
-                                <span className="sno">
-                                    3.
-                                </span>
-                                <button className="btn btn-link " type="button" id="orderSummary" data-toggle="collapse" data-target="#collapseSummary" aria-expanded="true" aria-controls="collapseSummary">
-                                  ORDER SUMMARY
-                                </button>
-                            </h5>
-                        </div>
-    
-                        <div id="collapseSummary" className="collapse bdy" aria-labelledby="headingOne" data-parent="#accordionExample">
-                            <div className="card-body ">
-    
-                                <div className="summary">
-                                    <div className="form-check d-flex justify-content-start align-items-center ">
-                                        <div className="container">
-                                            <div className="row d-flex justify-content-center">
-                                                <div className="col-xs-3">
-                                                    <p className="summaryinfo">Total</p>
-                                                    <p className="summaryinfo">(-) Product Discount</p>
-                                                    <p className="summaryinfo">Base Price</p>
-                                                    <p className="summaryinfo">CGST + SGST@5%</p>
-                                                    <h4 className="payable">Total Payable</h4>
-                                                </div>
-                                                {/* <div className="col-xs-3 ">
-                                                    <p className="summaryinfo" >&#8377;<span id="total" >{{total}}</span></p>
-                                                    <p className="summaryinfo" >&#8377;<span id="discount">{{discount}}></span></p>
-                                                    <p className="summaryinfo" >&#8377;<span id="base"></span></p>
-                                                    <p className="summaryinfo" >&#8377;<span id="tax"></span> </p>
-                                                    <h4 className="payable" >&#8377;<span id="totalPayable"></span></h4>
-    
-                                                </div> */}
-    
-                                            </div>
-                                            <form className="ml-auto form" method="post" action="/checkout">
-                                                <input id="pickupSelected" name="pickupSelected" type="hidden"/>
-                                                <input id="timeSelected" name="timeSelected" type="hidden"/>
-                                                <input id="finalPrice" name="finalPrice" type="hidden"/>
-                                                <button className="remove mt-5 py-3 px-5" id="confirm" type="submit"  data-toggle="modal" data-target="#orderModal">CONFIRM ORDER</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-    
-                            </div>
-                        </div>
-                        <div className="modal fade " id="orderModal" role="dialog">
-                         <div className="modal-dialog ">
-                            <div className="modal-content ">
-    
-                            <div className="modal-body">
-                              <button type="button" className="close" align="right" style="color:black" data-dismiss="modal">&times;</button>
-                              <div className="row text-center">
-                                <h2>Thank You!</h2>
-                                <h3>Your Order has been placed</h3>
-                                <label className="green-btn">Have a great day</label>
-                              </div>
-                            </div>
-                          </div>
-                          </div>
-                        </div>
-    
-    
-                    </div>
-    
-                </div>
-    
-                   
-           </div>
-        </div>
-    </div>
-    )
-}
+                    </div> 
+                    */ }

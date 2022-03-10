@@ -19,7 +19,7 @@ export default function GetCart(){
     const apiName = 'apigwserverless';
           const path = '/dev/getcart'; 
           const myInit = { // OPTIONAL
-              headers: {"user-id":"Anangyugya1"}, // OPTIONAL
+              headers: {"user-id":"Ananya1"}, // OPTIONAL
              // response: true, // OPTIONAL (return the entire Axios response object instead of only response.data)
           };
 
@@ -97,8 +97,7 @@ export default function GetCart(){
                 <h5 className="text-left price"><b>TOTAL: </b></h5><h4 className="rupees">&#8377;{cart.TotalPrice}</h4>
             </div>
             <div className="row text-center">
-            {/* onClick={()=>} */}
-                <button type="button" className=" btn-success butns " onClick={()=>navigate("/checkout", { replace: true })}>CHECKOUT</button>
+                <button type="button" className=" btn-success butns " onClick={()=>navigate("/checkout",{state: {Cart: cart}})}>CHECKOUT</button>
             </div>
             </div>
                 

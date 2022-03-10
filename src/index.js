@@ -13,6 +13,7 @@ import Navbar from './components/Navbar';
 import NavbarWithAuth from './components/Navbar';
 import GetCart from './routes/GetCart';
 import Checkout from './routes/Checkout';
+import Order from "./routes/OrderPlaced"
 
 const rootElement = document.getElementById("root");
 
@@ -58,6 +59,7 @@ ReactDOM.render(
           <Route path="restaurant/:id" element={<RestaurantMenu/>}/>
           <Route path="/cart" element={<GetCart/>}/>
           <Route path="/checkout" element={<Checkout />}/>
+          <Route path="/order" element={<Order />}/>
         </Route>
         </Routes>
       </BrowserRouter>
