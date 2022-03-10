@@ -22,40 +22,6 @@ import App from "../App"
 // }
 
 
-// {this.props.defaultColumns.map((column) => (
-//   <TableHeader
-//     value={column}
-//     onHeaderClick={this.handleSort}
-//   /
-// ))}
-
-// function handleClick(rid, item_id){
-//   console.log("Hello"+rid+item_id)
-
-
-// }
-
-
-const handleClick= (rid,item_id)=>{
-  console.log("In add to cart"+typeof(rid))
-  const apiName = 'apigwserverless';
-          const path = '/dev/add-to-cart'; 
-          const myInit = { // OPTIONAL
-              headers: {"user-id":"mytest","restaurant-id":rid,"item-id":item_id}, // OPTIONAL
-              response: true, // OPTIONAL (return the entire Axios response object instead of only response.data)
-          };
-
-         API
-          .get(apiName, path, myInit)
-          .then(response => {
-            console.log("cart api response got")
-            console.log(response.data)
-            
-          })
-          .catch(error => {
-            console.log(error.response);
-        });
-}
 
 
 function RestaurantMenu(props){
@@ -70,6 +36,7 @@ function RestaurantMenu(props){
   let { id } = useParams();
   const [fetchMenu, setfetchMenu]=useState("false")
   const [menuDom, setMenu]=useState([])
+  const [errorCart, checkErrorCart]=useState(false)
 
   useEffect(() => {
      connectBackend();
@@ -96,6 +63,31 @@ function RestaurantMenu(props){
         });
 
   }
+
+
+const handleClick= (rid,item_id)=>{
+  console.log("In add to cart")
+  const apiName = 'apigwserverless';
+          const path = '/dev/add-to-cart'; 
+          const myInit = { 
+              headers: {"user-id":"GreatStuff","restaurant-id":rid,"item-id":item_id}, // OPTIONAL
+              response: true, // OPTIONAL (return the entire Axios response object instead of only response.data)
+          };
+
+         API
+          .get(apiName, path, myInit)
+          .then(response => {
+            console.log("cart api response got")
+            console.log(response)
+            if(response.data=="1"){
+              alert("Error: Cart already contains Items from different restaurant")
+            }else if(response.data=="2")
+              alert("Added to cart")
+          })
+          .catch(error => {
+            console.log(error.response);
+        });
+}
 
   function AddToCartLink(/*item_id, rest_id*/) {
     const { route } = useAuthenticator((context) => [context.route]);
@@ -143,6 +135,18 @@ function RestaurantMenu(props){
 
   }
 
+  // function ErrorInAddCart(){
+  //   if(errorCart){
+
+  //     alert("Error")
+  //     return(<p> </p>)
+  //   }else{
+  //     return(
+  //       <p>AddedToCart</p>
+  //     )
+  //   }
+  // }
+
     return(
             <div className="container">
             <div className="row text-center">
@@ -151,8 +155,10 @@ function RestaurantMenu(props){
             </div>
             <div id="allBurger" className="tab-pane fade in active text-center">
                   {menuDom}
+                                  
+                  
             </div>
-           
+        
             </div>
             
 
