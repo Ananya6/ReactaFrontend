@@ -300,3 +300,7 @@ a{
       color: #0f7e4c;
   }
   
+  .flex-container {
+    display: flex;
+    flex-direction: column;
+  }
