@@ -26,11 +26,22 @@ const Login=()=>{
 
 const Navbar=()=>{
     const { route } = useAuthenticator((context) => [context.route]);
-    let button;
+    const { user } = useAuthenticator((context) => [context.user]);
 
+    let button;
+    console.log("Route is "+route)
     button=(route === 'c')?<Logout/>:<Login/>
-    
+    const [loggedIn, setLoginState]=useState(route)
+    const [login_user, setUser]=useState(user)
     const greeting="hello";
+
+    useEffect(() => {
+        console.log(loggedIn)
+        console.log("Users is "+login_user)
+
+        var user=localStorage.getItem('user-id');
+        console.log("Hey"+user)
+    },[route]);
 
     return(
         <div>

@@ -37,9 +37,11 @@ function RestaurantMenu(props){
   const [fetchMenu, setfetchMenu]=useState("false")
   const [menuDom, setMenu]=useState([])
   const [errorCart, checkErrorCart]=useState(false)
+  const [user, setUser]=localStorage.getItem('user-id');
 
   useEffect(() => {
      connectBackend();
+     console.log("User is "+user)
     
   },[fetchMenu]);
 
@@ -50,7 +52,7 @@ function RestaurantMenu(props){
           await API
           .get(apiName, path)
           .then(response => {
-
+            
             console.log("Connected ........\n"+apiName+path)
             setMenuArr(response.Menu)
             setfetchMenu("ft")
@@ -61,18 +63,19 @@ function RestaurantMenu(props){
           .catch(error => {
             console.log(error.response);
         });
-
+        
   }
-
 
 const handleClick= (rid,item_id)=>{
   console.log("In add to cart")
+  
   const apiName = 'apigwserverless';
           const path = '/dev/add-to-cart'; 
           const myInit = { 
-              headers: {"user-id":"GreatStuff","restaurant-id":rid,"item-id":item_id}, // OPTIONAL
+              headers: {"user-id":user,"restaurant-id":rid,"item-id":item_id}, // OPTIONAL
               response: true, // OPTIONAL (return the entire Axios response object instead of only response.data)
           };
+
 
          API
           .get(apiName, path, myInit)
@@ -108,6 +111,9 @@ const handleClick= (rid,item_id)=>{
 
   function CreateItem(){
     console.log("Creating Item")
+    let v=(fetchMenu)? "Auth done":"Not done";
+    console.log("Hello, ")
+
     console.log(menuItemArr)
    var allitems= menuItemArr.map(item =>
     <div key={item.ItemId} className=" col-md-4 col-xs-6 img-container-lg" >
@@ -168,6 +174,9 @@ const handleClick= (rid,item_id)=>{
 
 
 export default RestaurantMenu;
+
+
+
 {/* /* <div id="allBurger" className="tab-pane fade in active text-center">
             {{# each allBurger}}
               <div className=" col-md-4 col-xs-6 img-container-lg" >

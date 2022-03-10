@@ -4,7 +4,20 @@ import {Authenticator, useAuthenticator} from '@aws-amplify/ui-react'
 import '@aws-amplify/ui-react/styles.css';
 
 const Home = () => {
-    const { user, signOut } = useAuthenticator((context) => [context.user]);
+  const { user, signOut } = useAuthenticator((context) => [context.user]);
+
+    const { route } = useAuthenticator((context) => [context.route]);
+
+    const [loggedIn, setLoginState]=useState(route)
+    const [login_user, setUser]=useState(user.username)
+
+
+    useEffect(() => {
+        console.log(loggedIn)
+        console.log("Users is "+login_user)
+        localStorage.setItem('user-id',login_user)
+        console.log(localStorage.getItem('user-id'))
+    },[user]);
   
     return (
       <>
@@ -28,6 +41,9 @@ const Home = () => {
   }
   
   export default function PageWithProvider() {
+    
+
+
     return (
       <Authenticator.Provider>
         <Page></Page>

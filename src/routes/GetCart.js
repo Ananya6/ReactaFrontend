@@ -8,6 +8,7 @@ export default function GetCart(){
  const [cart, setCart]=useState({"Cart":"Just initialising"})
     const [cartDom, createCartDom]=useState();
     let navigate = useNavigate();
+    const [user, setUser]=localStorage.getItem('user-id').toString();
 
   useEffect(() => {
     callCartApi()
@@ -16,10 +17,11 @@ export default function GetCart(){
   
 
    async function callCartApi(){
+       console.log("User is "+user)
     const apiName = 'apigwserverless';
           const path = '/dev/getcart'; 
           const myInit = { // OPTIONAL
-              headers: {"user-id":"Ananya1"}, // OPTIONAL
+              headers: {"user-id":user}, // OPTIONAL
              // response: true, // OPTIONAL (return the entire Axios response object instead of only response.data)
           };
 
