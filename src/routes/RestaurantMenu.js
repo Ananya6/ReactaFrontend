@@ -37,11 +37,11 @@ function RestaurantMenu(props){
   const [fetchMenu, setfetchMenu]=useState("false")
   const [menuDom, setMenu]=useState([])
   const [errorCart, checkErrorCart]=useState(false)
-  const [user, setUser]=localStorage.getItem('user-id');
+  const [user, setUser]=useState("test-user")//localStorage.getItem('user-id');
 
   useEffect(() => {
      connectBackend();
-     console.log("User is "+user)
+
     
   },[fetchMenu]);
 
