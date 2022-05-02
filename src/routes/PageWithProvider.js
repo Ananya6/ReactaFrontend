@@ -15,8 +15,8 @@ const Home = () => {
     useEffect(() => {
         console.log(loggedIn)
         console.log("Users is "+login_user)
-        localStorage.setItem('user-id',login_user)
-        console.log(localStorage.getItem('user-id'))
+      //  localStorage.setItem('user-id',login_user)
+       // console.log(localStorage.getItem('user-id'))
     },[user]);
   
     return (

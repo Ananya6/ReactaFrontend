@@ -8,10 +8,11 @@ export default function GetCart(){
  const [cart, setCart]=useState({"Cart":"Just initialising"})
     const [cartDom, createCartDom]=useState();
     let navigate = useNavigate();
-    const [user, setUser]=localStorage.getItem('user-id').toString();
+    const [user, setUser]=useState("test-user")//localStorage.getItem('user-id').toString();
 
   useEffect(() => {
     callCartApi()
+
   },[]);
 
   
