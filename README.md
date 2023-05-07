@@ -16,7 +16,7 @@ Non-functional requirements:
 
 The solution  uses a microservices based architecture wherein each individual HTTP verb is isolated and associated with a different application logic(using different lambda for each of the verb. This makes the application more modular and easy of debug in case of any failures/errors. Failure in one functionality doesn’t impact the other.
 
-![alt text](https://github.com/Ananya6/ReactaFrontend/main/public/FoodOrdering.jpg)
+![alt text](https://github.com/Ananya6/ReactaFrontend/tree/main/public/FoodOrdering.jpg)
 
 Flow of website:
 
