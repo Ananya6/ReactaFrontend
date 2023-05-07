@@ -18,6 +18,8 @@ The solution  uses a microservices based architecture wherein each individual HT
 
 ![alt text](https://github.com/Ananya6/ReactaFrontend/tree/main/public/FoodOrdering.jpg)
 
+<img src="public/FoodOrdering.jpg" title="Diagram"/>
+
 Flow of website:
 
 1.	User loads the website and gets a list of restaurants to choose from(using Amplify which used Cloudfront and s3 for displaying static content
